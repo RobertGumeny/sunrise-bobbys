@@ -43,7 +43,13 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: ["@nuxtjs/fontawesome"],
+  fontawesome: {
+    component: "fa",
+    icons: {
+      solid: ["faCaretDown", "faBars"]
+    }
+  },
   /*
    ** Nuxt.js modules
    */
