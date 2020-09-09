@@ -1,15 +1,8 @@
 <template>
   <div class="main">
+    <img src="../assets/images/logo.png" alt="Sunrise Bobby's Logo" />
     <header>
-      <img src="../assets/images/logo.png" alt="Sunrise Bobby's Logo" />
-      <nav class="collapsed">
-        <a
-          href="javascript:void(0);"
-          @click="$event.target.classList.toggle('responsive')"
-          ><fa :icon="['fas', 'bars']"
-        /></a>
-      </nav>
-      <nav class="navMain" id="navMain">
+      <nav>
         <a href="#">Home</a>
         <span>|</span>
         <a href="#">Locations</a>
@@ -17,6 +10,12 @@
         <a href="#">About</a>
         <span>|</span>
         <a href="#">Catering</a>
+        <a
+          href="javascript:void(0);"
+          class="toggle"
+          @click="$event.currentTarget.classList.toggle('responsive')"
+          ><fa :icon="['fas', 'bars']"
+        /></a>
       </nav>
     </header>
     <a href="#" class="orderOnline">Order Online</a>
@@ -41,13 +40,15 @@ export default {
   background-color: $bg-primary;
   color: $text-secondary;
   letter-spacing: 1.25px;
+  text-align: center;
   font-family: "Lilita One", cursive;
+  position: relative;
 }
 header {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   margin-bottom: 1em;
-  position: relative;
 }
 
 img {
@@ -66,25 +67,8 @@ nav a {
   color: $text-secondary;
 }
 
-nav.navMain {
+a.toggle {
   display: none;
-}
-
-nav.navMain.responsive {
-  position: relative;
-}
-nav.navMain a {
-  float: none;
-  display: block;
-  text-align: left;
-}
-
-nav.collapsed {
-  font-size: 2.25em;
-  position: absolute;
-  top: 50%;
-  left: 85%;
-  transform: translate(0%, -50%);
 }
 
 a.orderOnline {
@@ -94,46 +78,63 @@ a.orderOnline {
   border-radius: 5px;
   padding: 5px 10px;
   text-align: center;
-  display: block;
+  display: inline-block;
 }
 
-@media only screen and (min-width: 576px) {
-  header {
-    display: block;
-    text-align: center;
-  }
-  nav.collapsed {
+@media only screen and (max-width: 576px) {
+  nav a:not(:last-child),
+  span {
     display: none;
   }
-  nav.navMain {
+  a.toggle {
+    font-size: 1.5em;
     display: block;
+    position: absolute;
+    top: 10%;
+    left: 87.5%;
   }
   .main {
     text-align: center;
   }
   a.orderOnline {
-    display: inline-block;
-    margin-bottom: 0.5em;
+    display: block;
+    margin: -1.5em 10% 1em 10%;
   }
-}
-@media only screen and (min-width: 690px) {
-  img {
-    width: 45%;
+  nav.responsive {
+    position: relative;
   }
-}
-@media only screen and (min-width: 850px) {
-  img {
-    width: 35%;
+  nav.responsive a {
+    float: none;
+    display: block;
+    text-align: center;
   }
-}
-@media only screen and (min-width: 1040px) {
-  img {
-    width: 25%;
+  @media only screen and (min-width: 690px) {
+    img {
+      width: 45%;
+    }
   }
-}
-@media only screen and (min-width: 1199px) {
-  img {
-    width: 20%;
+  @media only screen and (min-width: 850px) {
+    img {
+      width: 40%;
+    }
+    a,
+    span {
+      margin: 0.2em;
+    }
+  }
+  @media only screen and (min-width: 1040px) {
+    img {
+      width: 32.5%;
+    }
+    a,
+    span {
+      margin: 0 0.4em;
+    }
+  }
+  @media only screen and (min-width: 1199px) {
+    img {
+      width: 30%;
+    }
   }
 }
 </style>

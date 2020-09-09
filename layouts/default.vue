@@ -49,9 +49,14 @@ html {
     font-size: 20px;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 850px) {
   body {
     font-size: 24px;
+  }
+}
+@media only screen and (min-width: 1199px) {
+  body {
+    font-size: 26px;
   }
 }
 </style>
