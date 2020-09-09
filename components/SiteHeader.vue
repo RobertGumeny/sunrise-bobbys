@@ -1,36 +1,35 @@
 <template>
   <div class="main">
-    <img src="../assets/images/logo.png" alt="Sunrise Bobby's Logo" />
     <header>
-      <nav>
-        <a href="#">Home</a>
-        <span>|</span>
-        <a href="#">Locations</a>
-        <span>|</span>
-        <a href="#">About</a>
-        <span>|</span>
-        <a href="#">Catering</a>
-        <a
-          href="javascript:void(0);"
-          class="toggle"
-          @click="$event.currentTarget.classList.toggle('responsive')"
-          ><fa :icon="['fas', 'bars']"
-        /></a>
-      </nav>
+      <img src="../assets/images/logo.png" alt="Sunrise Bobby's Logo" />
+      <a href="javascript:void(0);" class="toggle" @click="toggleNav"
+        ><fa :icon="['fas', 'bars']"
+      /></a>
+      <DesktopNav id="desktopNav"></DesktopNav>
     </header>
-    <a href="#" class="orderOnline">Order Online</a>
+    <MobileNav id="mobileNav"></MobileNav>
   </div>
 </template>
 
 <script>
+import MobileNav from "./MobileNav";
+import DesktopNav from "./DesktopNav";
 export default {
   name: "site-header",
   data() {
     return {};
   },
   computed: {},
-  methods: {},
-  components: {}
+  methods: {
+    toggleNav() {
+      const mobile = document.getElementById("mobileNav").classList;
+      mobile.contains("show") ? mobile.remove("show") : mobile.add("show");
+    }
+  },
+  components: {
+    MobileNav,
+    DesktopNav
+  }
 };
 </script>
 
@@ -40,101 +39,71 @@ export default {
   background-color: $bg-primary;
   color: $text-secondary;
   letter-spacing: 1.25px;
-  text-align: center;
   font-family: "Lilita One", cursive;
   position: relative;
 }
+
 header {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 1em;
+  align-items: center;
+  justify-content: space-between;
 }
 
 img {
-  width: 55%;
+  width: 35%;
+  padding: 0.2em;
 }
 
-nav {
-  padding: 1em 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-nav a {
-  color: $text-secondary;
-}
-
+// Mobile nav toggle displays in top right by default
 a.toggle {
+  color: $text-secondary;
+  font-size: 2em;
+  margin-right: 1em;
+}
+
+// Display mobile nav when toggle is clicked
+#mobileNav {
+  display: none;
+}
+#mobileNav.show {
+  display: block;
+}
+
+// Hide desktop nav by default
+#desktopNav {
   display: none;
 }
 
-a.orderOnline {
-  color: $text-secondary;
-  background-color: $text-primary;
-  border: 1px solid $text-primary;
-  border-radius: 5px;
-  padding: 5px 10px;
-  text-align: center;
-  display: inline-block;
+@media screen and (min-width: 576px) {
+  img {
+    width: 30%;
+    padding: 0.5em;
+  }
 }
 
-@media only screen and (max-width: 576px) {
-  nav a:not(:last-child),
-  span {
+@media screen and (min-width: 768px) {
+  // Show desktop nav
+  #desktopNav {
+    display: block;
+  }
+  // Hide mobile nav
+  #mobileNav.show {
     display: none;
   }
+  // Hide toggle icon for mobile navigation
   a.toggle {
-    font-size: 1.5em;
-    display: block;
-    position: absolute;
-    top: 10%;
-    left: 87.5%;
+    display: none;
   }
-  .main {
-    text-align: center;
+  img {
+    width: 25%;
+    padding: 0.5em;
   }
-  a.orderOnline {
-    display: block;
-    margin: -1.5em 10% 1em 10%;
-  }
-  nav.responsive {
-    position: relative;
-  }
-  nav.responsive a {
-    float: none;
-    display: block;
-    text-align: center;
-  }
-  @media only screen and (min-width: 690px) {
-    img {
-      width: 45%;
-    }
-  }
-  @media only screen and (min-width: 850px) {
-    img {
-      width: 40%;
-    }
-    a,
-    span {
-      margin: 0.2em;
-    }
-  }
-  @media only screen and (min-width: 1040px) {
-    img {
-      width: 32.5%;
-    }
-    a,
-    span {
-      margin: 0 0.4em;
-    }
-  }
-  @media only screen and (min-width: 1199px) {
-    img {
-      width: 30%;
-    }
+}
+
+@media only screen and (min-width: 1200px) {
+  img {
+    width: 22.5%;
+    padding: 1em;
   }
 }
 </style>

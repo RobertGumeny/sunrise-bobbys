@@ -46,17 +46,22 @@ html {
 }
 @media only screen and (min-width: 576px) {
   body {
-    font-size: 20px;
+    font-size: 22px;
   }
 }
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: 768px) {
   body {
     font-size: 24px;
   }
 }
-@media only screen and (min-width: 1199px) {
+@media only screen and (min-width: 992px) {
   body {
     font-size: 26px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  body {
+    font-size: 28px;
   }
 }
 </style>
